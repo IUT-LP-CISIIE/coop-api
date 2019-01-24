@@ -14,7 +14,7 @@ $app->DELETE('/api/channels/{id}', function ($request, $response, $args) {
 });
 
 $function_update_channel = function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$id = $args['id'];
 	if(channel_update($id, $params)) {
 		return $response->withStatus(200)
@@ -33,7 +33,7 @@ $app->GET('/api/channels', function ($request, $response, $args) {
 });
 
 $app->post('/api/channels', function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$messages = verifier($params,array('label','topic'));
 	if(!$messages) {
 		$ret = channel_create($params);

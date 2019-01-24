@@ -1,7 +1,7 @@
 <?php
 
 $function_update_post = function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$id = $args['id'];
 	if(post_update($id, $params)) {
 		return $response->withStatus(200)
@@ -36,7 +36,7 @@ $app->GET('/api/channels/{id}/posts', function ($request, $response, $args) {
 
 
 $app->post('/api/channels/{id}/posts', function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$params['channel_id']=$args['id'];
 	$params['member_id']=$_SESSION['member']['id'];
 	$messages = verifier($params,array('member_id','channel_id','message'));

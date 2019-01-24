@@ -31,7 +31,7 @@ $app->GET('/api/members/{id}/signedin', function ($request, $response, $args) {
 });
 
 $app->POST('/api/members/signin', function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$member = member_get($params['email'],'email');
 	if($member['password'] == $params['password']) {
 		session_start();
@@ -49,7 +49,7 @@ $app->POST('/api/members/signin', function ($request, $response, $args) {
 });
 
 $app->post('/api/members', function ($request, $response, $args) {
-	$params = $request->getQueryParams();
+	$params = array_merge($request->getQueryParams(), $_POST);
 	$messages = verifier($params,array('fullname','email','password'));
 	if(!$messages) {
 		$ret = member_create($params);
