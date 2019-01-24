@@ -25,9 +25,9 @@ function member_get($valeur,$key='id') {
 	$sth = prepare("SELECT * FROM members WHERE cle = :cle AND ".$key." = :valeur");
 	$sth->bindParam("valeur", $valeur);
 	$sth->bindParam("cle", $GLOBALS['API_KEY']);
-
 	$sth->execute();
 	$members = $sth->fetchAll();	
+
 	if(isset($members[0])) {
 		return prepareData($members[0]);
 	}

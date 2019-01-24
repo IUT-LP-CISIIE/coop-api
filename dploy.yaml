@@ -1,0 +1,11 @@
+prod:
+    scheme: sftp
+    host: tools.sopress.net
+    port: 22
+    user: sopress
+    pass: qpok7510
+    path:
+        local: "/"
+        remote: /home/sopress/www/iut/coop
+    check: true
+

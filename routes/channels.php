@@ -5,12 +5,11 @@ $app->DELETE('/api/channels/{id}', function ($request, $response, $args) {
 		channel_delete($args['id']);
 		return $response->withStatus(200)
 		->withHeader('Content-Type', 'application/json')
-		->write(json_encode(channel_get(array('message'=>'Channel effacé.'))));		
+		->write(json_encode(array('message'=>'Channel effacé.')));		
 	} else {
 		return $response->withStatus(500)
 		->withHeader('Content-Type', 'application/json')
-		->write(json_encode(channel_get(array('message'=>'Ce channel n\'existe pas.'))));		
-
+		->write(json_encode(array('message'=>'Ce channel n\'existe pas.')));		
 	}
 });
 
@@ -20,7 +19,7 @@ $function_update_channel = function ($request, $response, $args) {
 	if(channel_update($id, $params)) {
 		return $response->withStatus(200)
 		->withHeader('Content-Type', 'application/json')
-		->write(json_encode(channel_get($id)));		
+		->write(json_encode(channel_get($id,'hash')));		
 	}
 }; 
 $app->PUT('/api/channels/{id}', $function_update_channel);

@@ -2,7 +2,7 @@
 
 
 function ID($id) {
-	return sha1(CHEMIN_SITE.$GLOBALS['API_KEY'].$id.time());
+	return sha1(CHEMIN_SITE.$GLOBALS['API_KEY'].$id.microtime().rand());
 }
 
 function prepareData($data) {

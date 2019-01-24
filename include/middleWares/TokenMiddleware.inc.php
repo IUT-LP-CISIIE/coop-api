@@ -13,17 +13,19 @@ Class TokenMiddleware
     	}
     	$routes_publiques = array(
     		'ping',
-//    		'members/signin'
+            'members',
+       		'members/signin'
     	);
         $cle = trim(str_replace('Bearer ','',$request->getHeaders()['HTTP_AUTHORIZATION'][0]));
+        $GLOBALS['API_KEY'] = $cle;
+        
         $granted = false;
         $route = str_replace('api/','',$request->getUri()->getPath());
         if(in_array($route, $routes_publiques)!==false) {
-        	$granted = true;
+            $granted = true;
         } else if($cle) {
-        	if(getCle($cle)) {
-        		$granted=true;
-        		$GLOBALS['API_KEY'] = $cle;
+            if(getCle($cle)) {
+                $granted=true;
         	} else {
         		$message = 'Token inconnu';
         	}
