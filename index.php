@@ -18,6 +18,16 @@ $app->add( new TokenMiddleware() );
 //     return $response->write("Hello, " . $args['name']);
 // });
 
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
+
 foreach(glob(CHEMIN_SITE.'routes/*.php') as $route) {
 	include $route;
 }
