@@ -1,7 +1,7 @@
 <?php
 
 $app->DELETE('/api/channels/{id}', function ($request, $response, $args) {
-	if(channel_get($args['id'])) {
+	if(channel_get($args['id'],'hash')) {
 		channel_delete($args['id']);
 		return $response->withStatus(200)
 		->withHeader('Content-Type', 'application/json')
@@ -24,6 +24,14 @@ $function_update_channel = function ($request, $response, $args) {
 }; 
 $app->PUT('/api/channels/{id}', $function_update_channel);
 $app->PATCH('/api/channels/{id}', $function_update_channel);
+
+$app->GET('/api/channels/{id}', function ($request, $response, $args) {
+	$id = $args['id'];
+	$channel = channel_get($id, 'hash');
+	return $response->withStatus(200)
+	->withHeader('Content-Type', 'application/json')
+	->write(json_encode($channel));
+});
 
 $app->GET('/api/channels', function ($request, $response, $args) {
 	$channels = channel_getAll();

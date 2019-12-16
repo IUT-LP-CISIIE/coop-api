@@ -39,6 +39,13 @@ function post_create($post) {
 	return post_get($GLOBALS['DB']->lastInsertId());
 }	
 
+function post_delete($hash) {
+	$sql = "DELETE FROM posts WHERE hash = :hash";
+	$sth = prepare($sql);
+	$sth->bindParam("hash", $hash);
+	return $sth->execute();
+}	
+
 
 function post_get($valeur,$key='id') {
 	$sth = prepare("SELECT * FROM posts WHERE cle = :cle AND ".$key." = :valeur");

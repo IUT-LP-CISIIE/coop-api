@@ -23,7 +23,6 @@ function me($data) {
 }
 
 function verifier($data,$fields) {
-
 	$erreurs = array();
 	foreach ($fields as $field) {
 		if(empty($data[$field])) {

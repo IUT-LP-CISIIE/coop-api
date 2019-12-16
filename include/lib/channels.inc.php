@@ -63,4 +63,9 @@ function channel_delete($hash) {
 	$sth->bindParam("hash", $hash);
 	$sth->bindParam("cle", $GLOBALS['API_KEY']);
 	$sth->execute();
+
+	$sth = prepare("DELETE FROM posts WHERE cle = :cle AND channel_id = :hash");
+	$sth->bindParam("hash", $hash);
+	$sth->bindParam("cle", $GLOBALS['API_KEY']);
+	$sth->execute();
 }

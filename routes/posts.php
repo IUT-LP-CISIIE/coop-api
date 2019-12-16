@@ -1,4 +1,12 @@
 <?php
+$app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
+	$id = $args['id'];
+	post_delete($id);
+	$error = array('message'=>'Post effacé.');
+	return $response->withStatus(200)
+	->withHeader('Content-Type', 'application/json')
+	->write(json_encode($error));
+});
 
 $function_update_post = function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
@@ -38,7 +46,7 @@ $app->GET('/api/channels/{id}/posts', function ($request, $response, $args) {
 $app->post('/api/channels/{id}/posts', function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
 	$params['channel_id']=$args['id'];
-	$params['member_id']=$_SESSION['member']['id'];
+	$params['member_id']=$GLOBALS['membre']['id'];
 	$messages = verifier($params,array('member_id','channel_id','message'));
 	if(!$messages) {
 		$ret = post_create($params);

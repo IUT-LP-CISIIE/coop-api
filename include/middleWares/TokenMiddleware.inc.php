@@ -13,16 +13,7 @@ Class TokenMiddleware
         $granted = false;
         $message = false;
         $GLOBALS['membre']=false;
-        if($session_token = $_GET['token'] ?  $_GET['token'] : $_POST['token']) {
-            if($session = getSession($session_token)) {
-                if($member = member_get($session['member_hash'],'hash')) {
-                    $GLOBALS['membre'] = $member;
-                    $GLOBALS['token'] = $session_token;
-                }
-            }
-        }
-
-
+        $session_token = $_GET['token'] ?  $_GET['token'] : $_POST['token'];
 
     	$routes_publiques = array(
     		'ping',
@@ -30,16 +21,33 @@ Class TokenMiddleware
         if(!$message) {
             $route = str_replace('api/','',$request->getUri()->getPath());
             $token_declaration = ' Vous devez déclarer votre token au préalable en consultant la page '.URL_API.'key.php';
-            if(in_array($route, $routes_publiques)!==false) {
-                $granted = true;
-            } else if($cle) {
-                if(getCle($cle)) {
-                    $granted=true;
-            	} else {
+
+
+
+            if($cle) {
+                if(!getCle($cle)) {
             		$message = 'Token inconnu.'.$token_declaration;
             	}
             } else {
             	$message = 'Token manquant. Vous devez envoyer un token dans les headers de votre appel. Exemple : {"Authorization":"montoken"}.'.$token_declaration;
+            }
+
+            if(!$message) {
+                if(in_array($route, $routes_publiques)!==false) {
+                    $granted = true;
+                } else if($session_token) {
+                    if($session = getSession($session_token)) {
+                        $granted=true;
+                        if($member = member_get($session['member_hash'],'hash')) {
+                            $GLOBALS['membre'] = $member;
+                            $GLOBALS['token'] = $session_token;
+                        }
+                    } else {
+                        $message='Cet identifiant de session n\'est pas valide.';
+                    }
+                } else {
+                    $message = 'Vous decez passer un token de session en paramètre de votre appel';
+                }
             }
         }
 
