@@ -17,7 +17,8 @@ Class TokenMiddleware
 
     	$routes_publiques = array(
     		'ping',
-            'members'
+            'members',
+            'members/signin'
     	);
         if(!$message) {
             $route = str_replace('api/','',$request->getUri()->getPath());
