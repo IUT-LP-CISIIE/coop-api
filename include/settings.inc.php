@@ -8,8 +8,8 @@ if($_SERVER['HTTP_HOST'] == 'tools.sopress.net') {
 	$settings['user'] = 'sopress';
 	$settings['pass'] = 'qpok7510';
 
-	define('CHEMIN_SITE','/home/sopress/www/coop/');
-	define('URL_API','http://tools.sopress.local/coop/');	
+	define('CHEMIN_SITE','/home/sopress/www/iut/coop/');
+	define('URL_API','http://tools.sopress.net/iut/coop/');	
 } else {
 	$settings = array();
 	$settings['host'] = 'sopress.local';
