@@ -7,6 +7,8 @@ Class TokenMiddleware
 
     public function __invoke($request, $response, $next)
     {
+
+
         $cle = trim(str_replace('Bearer ','',$request->getHeaders()['HTTP_AUTHORIZATION'][0]));
         $GLOBALS['API_KEY'] = $cle;
 
@@ -51,6 +53,9 @@ Class TokenMiddleware
                     $message = 'Vous devez passer un identifiant de session en paramètre de votre appel';
                 }
             }
+        }
+        if($request->getMethod() == 'OPTIONS') {
+            $granted=true;
         }
 
         if($granted) {
