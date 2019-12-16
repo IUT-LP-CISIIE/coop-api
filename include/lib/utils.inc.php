@@ -1,7 +1,8 @@
 <?php
 
 
-function ID($id) {
+
+function ID($id=false) {
 	return sha1(CHEMIN_SITE.$GLOBALS['API_KEY'].$id.microtime().rand());
 }
 
@@ -22,6 +23,7 @@ function me($data) {
 }
 
 function verifier($data,$fields) {
+
 	$erreurs = array();
 	foreach ($fields as $field) {
 		if(empty($data[$field])) {

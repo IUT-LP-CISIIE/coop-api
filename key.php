@@ -3,7 +3,11 @@ include 'include/main.inc.php';
 $hash=false;
 if($_POST['email']) {
 	$email = $_POST['email'];
-	$hash = ajouterCle($_POST['email']);
+	if(!getCle(hashCle($email))) {
+		$hash = ajouterCle($email);
+	} else {
+		$message = 'Un token lié à cette adresse mail existe déjà.';
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -63,13 +67,13 @@ if($_POST['email']) {
 						<div class="card box has-text-left">
 							Pour faire des appels API autorisés, envoyez le header suivant :
 							<p>
-								<code>Authorization: Bearer <?php echo htmlspecialchars($hash);?></code>
+								<code>Authorization: <?php echo htmlspecialchars($hash);?></code>
 							</p>
 
 							<br>Exemple avec Axios :
 							<p>
 								<pre>let config = {
-	headers: {'Authorization': "bearer <?php echo htmlspecialchars($hash);?>"}
+	headers: {'Authorization': "<?php echo htmlspecialchars($hash);?>"}
 }
 Axios.post(api_route,params,config).then(() => { ... });
 </pre>
@@ -83,21 +87,27 @@ Axios.post(api_route,params,config).then(() => { ... });
 							<form method="post" action="key.php">
 								<div class="field is-grouped">
 									<p class="control is-expanded">
-										<input class="input" type="email" name="email" placeholder="Adresse email">
+										<input class="input" type="email" name="email" placeholder="Adresse email" value="<?php echo htmlspecialchars($email);?>">
 									</p>
+
 									<p class="control">
 										<button class="button is-info">
 											Valider
 										</button>
 									</p>
 								</div>
+	<?php
+	if($message){?>
+		<div class="notification is-danger">
+		  <?php echo $message;?>
+		</div>
+	<?php }?>
 							</form>
 						</div>
 					<?php }?>
 				</div>
 			</div>
 		</div>
-
 	</section>
 	<script async type="text/javascript" src="../js/bulma.js"></script>
 </body>

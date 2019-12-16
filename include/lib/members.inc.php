@@ -27,7 +27,6 @@ function member_get($valeur,$key='id') {
 	$sth->bindParam("cle", $GLOBALS['API_KEY']);
 	$sth->execute();
 	$members = $sth->fetchAll();	
-
 	if(isset($members[0])) {
 		return prepareData($members[0]);
 	}
@@ -50,5 +49,10 @@ function member_delete($hash) {
 	$sth = prepare("DELETE FROM members WHERE cle = :cle AND hash = :hash");
 	$sth->bindParam("hash", $hash);
 	$sth->bindParam("cle", $GLOBALS['API_KEY']);
+	$sth->execute();
+
+
+	$sth = prepare("DELETE FROM sessions WHERE member_hash = :hash");
+	$sth->bindParam("hash", $hash);
 	$sth->execute();
 }

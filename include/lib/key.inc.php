@@ -26,7 +26,7 @@ function ajouterCle($email) {
 			return $cle;
 		}
 		catch(PDOException $exception){ 
-			me($exception);
+//			me($exception);
 		}	
 	}
 }
