@@ -59,6 +59,10 @@ Class TokenMiddleware
         }
 
         if($granted) {
+            if(!count($_POST)) {
+                $_POST = json_decode(file_get_contents("php://input"),true);
+            }
+            
         	return $next($request, $response);
 		} else {
 			return $response->withStatus(401)
