@@ -17,10 +17,11 @@ Class TokenMiddleware
 
     	$routes_publiques = array(
     		'ping',
+            'members'
     	);
         if(!$message) {
             $route = str_replace('api/','',$request->getUri()->getPath());
-            $token_declaration = ' Vous devez déclarer votre token au préalable en consultant la page '.URL_API.'key.php';
+            $token_declaration = ' Vous devez déclarer votre token d\'autorisation au préalable en consultant la page '.URL_API.'key.php';
 
 
 
@@ -29,7 +30,7 @@ Class TokenMiddleware
             		$message = 'Token inconnu.'.$token_declaration;
             	}
             } else {
-            	$message = 'Token manquant. Vous devez envoyer un token dans les headers de votre appel. Exemple : {"Authorization":"montoken"}.'.$token_declaration;
+            	$message = 'Token d\'autorisation manquant. Vous devez envoyer un token d\'autorisation dans les headers de votre appel. Exemple : {"Authorization":"montoken"}.'.$token_declaration;
             }
 
             if(!$message) {
@@ -46,7 +47,7 @@ Class TokenMiddleware
                         $message='Cet identifiant de session n\'est pas valide.';
                     }
                 } else {
-                    $message = 'Vous decez passer un token de session en paramètre de votre appel';
+                    $message = 'Vous devez passer un identifiant de session en paramètre de votre appel';
                 }
             }
         }
