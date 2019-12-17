@@ -1,4 +1,15 @@
 <?php
+
+
+/**
+ * @api {DELETE} /channels/:channel_id/posts/:id Effacer un message
+ * @apiName deleteMessage
+ * @apiGroup Message
+ *
+ * @apiParam {String} channel_id Identifiant de la conversation
+ * @apiParam {String} id Identifiant du message
+ * @apiParam {String} session_token Le token de session
+ */
 $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
 	$id = $args['id'];
 	post_delete($id);
@@ -8,6 +19,16 @@ $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $respo
 	->write(json_encode($error));
 });
 
+
+/**
+ * @api {PUT} /channels/:channel_id/posts/:id Editer un message
+ * @apiName editMessage
+ * @apiGroup Message
+ *
+ * @apiParam {String} channel_id Identifiant de la conversation
+ * @apiParam {String} id Identifiant du message
+ * @apiParam {String} session_token Le token de session
+ */
 $function_update_post = function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
 	$id = $args['id'];
@@ -20,6 +41,15 @@ $function_update_post = function ($request, $response, $args) {
 $app->PUT('/api/channels/{channel_id}/posts/{id}', $function_update_post);
 $app->PATCH('/api/channels/{channel_id}/posts/{id}', $function_update_post);
 
+/**
+ * @api {GET} /channels/:channel_id/posts/:id Récupérer un message
+ * @apiName getMessage
+ * @apiGroup Message
+ *
+ * @apiParam {String} channel_id Identifiant de la conversation
+ * @apiParam {String} id Identifiant du message
+ * @apiParam {String} session_token Le token de session
+ */
 $app->GET('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
 	if($post = post_get($args['id'],'hash')) {
 		if($post['channel_id'] == $args['channel_id']) {
@@ -35,17 +65,39 @@ $app->GET('/api/channels/{channel_id}/posts/{id}', function ($request, $response
 
 });
 
-$app->GET('/api/channels/{id}/posts', function ($request, $response, $args) {
-	$posts = post_getAll($args['id']);
+/**
+ * @api {PUT} /channels/:channel_id/posts/:id Récupérer les messages d'une conversation 
+ * @apiName getMessages
+ * @apiGroup Message
+ *
+ * @apiParam {String} channel_id Identifiant de la conversation
+ * @apiParam {String} session_token Le token de session
+ */
+$app->GET('/api/channels/{channel_id}/posts', function ($request, $response, $args) {
+	$posts = post_getAll($args['channel_id']);
 	return $response->withStatus(200)
 	->withHeader('Content-Type', 'application/json')
 	->write(json_encode($posts));
 });
 
 
-$app->post('/api/channels/{id}/posts', function ($request, $response, $args) {
+
+/**
+ * @api {POST} /channels/:channel_id/posts/:id Poster un message 
+ * @apiName setMessage
+ * @apiGroup Message
+ *
+ * @apiParam {String} channel_id Identifiant de la conversation
+ * @apiParam {String} member_id Identifiant de l'auteur
+ * @apiParam {String} message Contenu du message
+ * @apiParam {String} session_token Le token de session
+ *
+ * @apiSuccess {Object} post Le message posté
+ */
+
+$app->post('/api/channels/{channel_id}/posts', function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
-	$params['channel_id']=$args['id'];
+	$params['channel_id']=$args['channel_id'];
 	$params['member_id']=$GLOBALS['membre']['id'];
 	$messages = verifier($params,array('member_id','channel_id','message'));
 	if(!$messages) {
