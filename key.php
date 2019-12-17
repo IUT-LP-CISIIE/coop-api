@@ -32,10 +32,13 @@ if($_POST['email']) {
 			<nav class="navbar">
 				<div class="container">
 					<div class="navbar-brand">
-						<a class="navbar-item" href="key.php">
+						<span class="navbar-item">
 							COOP
-						</a>
+						</span>
 					</div>
+						<a class="navbar-item" href="doc">
+							Documentation
+						</a>
 				</div>
 			</nav>
 		</div>
@@ -44,11 +47,11 @@ if($_POST['email']) {
 			<div class="container has-text-centered">
 				<div class="column is-6 is-offset-3">
 					<h1 class="title">
-						API KEY
+						Token d'autorisation
 					</h1>
 					<?php if($hash) {?>
 						<h2 class="subtitle">
-							Voici votre API KEY
+							Voici votre token d'autorisation (API KEY)
 						</h2>
 						<div class="box has-text-left">
 								<div class="field">
@@ -58,7 +61,7 @@ if($_POST['email']) {
 									</div>
 								</div>
 								<div class="field">
-									<label class="label">API KEY</label>
+									<label class="label">Token d'autorisation</label>
 									<div class="control">
 										<input class="input" type="text" value="<?php echo htmlspecialchars($hash);?>" onfocus="this.select()" readonly>
 									</div>
@@ -81,7 +84,7 @@ Axios.post(api_route,params,config).then(() => { ... });
 						</div>
 					<?php } else {?>
 						<h2 class="subtitle">
-							Entrez votre adresse mail pour obtenir votre API KEY.
+							Entrez votre adresse mail pour obtenir votre token d'autorisation.
 						</h2>
 						<div class="box">
 							<form method="post" action="key.php">

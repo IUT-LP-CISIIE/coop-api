@@ -24,6 +24,10 @@ Class TokenMiddleware
     	);
         if(!$message) {
             $route = str_replace('api/','',$request->getUri()->getPath());
+            if($route == '/') {
+                header('Location: doc');
+                exit;
+            }
             $token_declaration = ' Vous devez déclarer votre token d\'autorisation au préalable en consultant la page '.URL_API.'key.php';
 
 
