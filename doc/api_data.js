@@ -314,7 +314,7 @@ define({ "api": [
   {
     "type": "POST",
     "url": "/members",
-    "title": "",
+    "title": "Créer un membre",
     "name": "setMembre",
     "group": "Membre",
     "parameter": {

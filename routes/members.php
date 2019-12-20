@@ -99,7 +99,7 @@ $app->POST('/api/members/signin', function ($request, $response, $args) {
 });
 
 /**
- * @api {POST} /members
+ * @api {POST} /members Créer un membre
  * @apiName setMembre
  * @apiGroup Membre
  *
@@ -121,13 +121,13 @@ $app->post('/api/members', function ($request, $response, $args) {
 			->write(json_encode($ret));
 		} else {
 			$error = array('member'=>$params,'message'=>$ret);
-			return $response->withStatus(500)
+			return $response->withStatus(400)
 			->withHeader('Content-Type', 'application/json')
 			->write(json_encode($error));
 		}
 	} else {
 		$error = array('member'=>$params,'message'=>implode(' ',$messages));
-		return $response->withStatus(500)
+		return $response->withStatus(400)
 		->withHeader('Content-Type', 'application/json')
 		->write(json_encode($error));
 	}
