@@ -37,11 +37,10 @@ $app->GET('/api/channels', function ($request, $response, $args) {
 });
 
 /**
- * @api {POST} /channels/:id Poster une conversation
+ * @api {POST} /channels Poster une conversation
  * @apiName setConversation
  * @apiGroup Conversation
  *
- * @apiParam {String} id Identifiant de la conversation
  * @apiParam {String} label Etiquette de la conversation
  * @apiParam {String} topic Sujet de la conversation
  * @apiParam {String} session_token Le token de session

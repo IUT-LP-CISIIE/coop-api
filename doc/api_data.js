@@ -190,20 +190,13 @@ define({ "api": [
   },
   {
     "type": "POST",
-    "url": "/channels/:id",
+    "url": "/channels",
     "title": "Poster une conversation",
     "name": "setConversation",
     "group": "Conversation",
     "parameter": {
       "fields": {
         "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Identifiant de la conversation</p>"
-          },
           {
             "group": "Parameter",
             "type": "String",
