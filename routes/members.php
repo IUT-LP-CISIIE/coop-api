@@ -74,7 +74,7 @@ $app->GET('/api/members/{id}/signedin', function ($request, $response, $args) {
 });
 
 /**
- * @api {GET} /members/signin Se connecter
+ * @api {POST} /members/signin Se connecter
  * @apiName signInMembre
  * @apiGroup Membre
  *

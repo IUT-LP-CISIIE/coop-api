@@ -362,7 +362,7 @@ define({ "api": [
     "groupTitle": "Membre"
   },
   {
-    "type": "GET",
+    "type": "POST",
     "url": "/members/signin",
     "title": "Se connecter",
     "name": "signInMembre",
