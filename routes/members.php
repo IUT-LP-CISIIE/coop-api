@@ -85,6 +85,7 @@ $app->POST('/api/members/signin', function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
 	$member = member_get($params['email'],'email');
 	if($member['password'] == $params['password']) {
+		unset($member['password']);
 		if($token = createSession($member['id'])) {
 			return $response->withStatus(200)
 			->withHeader('Content-Type', 'application/json')
