@@ -42,7 +42,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "session_token",
+            "field": "token",
             "description": "<p>Le token de session</p>"
           }
         ]
@@ -86,7 +86,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "session_token",
+            "field": "token",
             "description": "<p>Le token de session</p>"
           }
         ]
@@ -129,7 +129,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "session_token",
+            "field": "token",
             "description": "<p>Le token de session</p>"
           }
         ]
@@ -165,7 +165,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "session_token",
+            "field": "token",
             "description": "<p>Le token de session</p>"
           }
         ]
@@ -215,7 +215,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "session_token",
+            "field": "token",
             "description": "<p>Le token de session</p>"
           }
         ]

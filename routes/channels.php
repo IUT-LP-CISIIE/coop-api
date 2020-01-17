@@ -7,7 +7,7 @@
  * @apiGroup Conversation
  *
  * @apiParam {String} id Identifiant de la conversation
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Object} channel La conversation
  */
@@ -25,7 +25,7 @@ $app->GET('/api/channels/{id}', function ($request, $response, $args) {
  * @apiName getConversations
  * @apiGroup Conversation
  *
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Array} channels Les conversations
  */
@@ -43,7 +43,7 @@ $app->GET('/api/channels', function ($request, $response, $args) {
  *
  * @apiParam {String} label Etiquette de la conversation
  * @apiParam {String} topic Sujet de la conversation
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Object} channel La conversation créé
  */
@@ -81,7 +81,7 @@ $app->post('/api/channels', function ($request, $response, $args) {
  * @apiParam {String} id Identifiant de la conversation
  * @apiParam {String} label Etiquette de la conversation
  * @apiParam {String} topic Sujet de la conversation
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Object} channel La conversation modifiée
  */
@@ -105,7 +105,7 @@ $app->PATCH('/api/channels/{id}', $function_update_channel);
  * @apiGroup Conversation
  *
  * @apiParam {String} id Identifiant de la conversation
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  */
 $app->DELETE('/api/channels/{id}', function ($request, $response, $args) {
