@@ -83,7 +83,7 @@ $app->GET('/api/channels/{channel_id}/posts', function ($request, $response, $ar
 
 
 /**
- * @api {POST} /channels/:channel_id/posts/:id Poster un message 
+ * @api {POST} /channels/:channel_id/posts Poster un message 
  * @apiName setMessage
  * @apiGroup Message
  *

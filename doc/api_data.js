@@ -580,7 +580,7 @@ define({ "api": [
   },
   {
     "type": "POST",
-    "url": "/channels/:channel_id/posts/:id",
+    "url": "/channels/:channel_id/posts",
     "title": "Poster un message",
     "name": "setMessage",
     "group": "Message",
