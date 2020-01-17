@@ -7,7 +7,7 @@
  * @apiName getMembres
  * @apiGroup Membre
  *
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Array} members Liste des membres
  */
@@ -24,7 +24,7 @@ $app->GET('/api/members', function ($request, $response, $args) {
  * @apiName signOutMembre
  * @apiGroup Membre
  *
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->DELETE('/api/members/signout', function ($request, $response, $args) {
 //	unset($_SESSION['member']);
@@ -40,7 +40,7 @@ $app->DELETE('/api/members/signout', function ($request, $response, $args) {
  * @apiGroup Membre
  *
  * @apiParam {String} id L'identifiant du membre
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->DELETE('/api/members/{id}', function ($request, $response, $args) {
 	member_delete($args['id']);
@@ -55,7 +55,7 @@ $app->DELETE('/api/members/{id}', function ($request, $response, $args) {
  * @apiGroup Membre
  *
  * @apiParam {String} id L'identifiant du membre
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->GET('/api/members/{id}/signedin', function ($request, $response, $args) {
 	$id = $args['id'];

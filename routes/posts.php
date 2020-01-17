@@ -8,7 +8,7 @@
  *
  * @apiParam {String} channel_id Identifiant de la conversation
  * @apiParam {String} id Identifiant du message
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
 	$id = $args['id'];
@@ -27,7 +27,7 @@ $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $respo
  *
  * @apiParam {String} channel_id Identifiant de la conversation
  * @apiParam {String} id Identifiant du message
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $function_update_post = function ($request, $response, $args) {
 	$params = array_merge($request->getQueryParams(), $_POST);
@@ -48,7 +48,7 @@ $app->PATCH('/api/channels/{channel_id}/posts/{id}', $function_update_post);
  *
  * @apiParam {String} channel_id Identifiant de la conversation
  * @apiParam {String} id Identifiant du message
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->GET('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
 	if($post = post_get($args['id'],'hash')) {
@@ -71,7 +71,7 @@ $app->GET('/api/channels/{channel_id}/posts/{id}', function ($request, $response
  * @apiGroup Message
  *
  * @apiParam {String} channel_id Identifiant de la conversation
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  */
 $app->GET('/api/channels/{channel_id}/posts', function ($request, $response, $args) {
 	$posts = post_getAll($args['channel_id']);
@@ -90,7 +90,7 @@ $app->GET('/api/channels/{channel_id}/posts', function ($request, $response, $ar
  * @apiParam {String} channel_id Identifiant de la conversation
  * @apiParam {String} member_id Identifiant de l'auteur
  * @apiParam {String} message Contenu du message
- * @apiParam {String} session_token Le token de session
+ * @apiParam {String} token Le token de session
  *
  * @apiSuccess {Object} post Le message posté
  */
