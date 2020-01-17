@@ -16,7 +16,10 @@ Class TokenMiddleware
         $message = false;
         $GLOBALS['membre']=false;
         $session_token = $_GET['token'] ?  $_GET['token'] : $_POST['token'];
-
+        if(!$session_token) {
+            $session_token = $_GET['session_token'] ?  $_GET['session_token'] : $_POST['session_token'];
+        }
+        
     	$routes_publiques = array(
     		'ping',
             'members',
