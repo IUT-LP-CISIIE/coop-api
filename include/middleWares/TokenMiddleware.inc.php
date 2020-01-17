@@ -19,28 +19,37 @@ Class TokenMiddleware
         if(!$session_token) {
             $session_token = $_GET['session_token'] ?  $_GET['session_token'] : $_POST['session_token'];
         }
-        
-    	$routes_publiques = array(
-    		'ping',
+
+        if(!$session_token) {
+            $data = json_decode(file_get_contents("php://input"), TRUE);
+            $session_token = isset($data['token']) ?  $data['token'] : false;
+            if(!$session_token) {
+                $session_token = isset($data['session_token']) ?  $data['session_token'] : false;
+            }
+        }
+
+        $routes_publiques = array(
+            'ping',
             'members',
             'members/signin'
-    	);
+        );
         if(!$message) {
             $route = str_replace('api/','',$request->getUri()->getPath());
             if($route == '/') {
                 header('Location: doc');
                 exit;
             }
+
             $token_declaration = ' Vous devez déclarer votre token d\'autorisation au préalable en consultant la page '.URL_API.'key.php';
 
 
 
             if($cle) {
                 if(!getCle($cle)) {
-            		$message = 'Token inconnu.'.$token_declaration;
-            	}
+                    $message = 'Token inconnu.'.$token_declaration;
+                }
             } else {
-            	$message = 'Token d\'autorisation manquant. Vous devez envoyer un token d\'autorisation dans les headers de votre appel. Exemple : {"Authorization":"montoken"}.'.$token_declaration;
+                $message = 'Token d\'autorisation manquant. Vous devez envoyer un token d\'autorisation dans les headers de votre appel. Exemple : {"Authorization":"montoken"}.'.$token_declaration;
             }
 
             if(!$message) {
@@ -70,12 +79,12 @@ Class TokenMiddleware
                 $_POST = json_decode(file_get_contents("php://input"),true);
             }
             
-        	return $next($request, $response);
-		} else {
-			return $response->withStatus(401)
-			->withHeader('Content-Type', 'application/json')
-			->write(json_encode(array('message'=>$message)));
-		}
+            return $next($request, $response);
+        } else {
+            return $response->withStatus(401)
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode(array('message'=>$message)));
+        }
     }
 }
 
