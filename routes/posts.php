@@ -66,7 +66,7 @@ $app->GET('/api/channels/{channel_id}/posts/{id}', function ($request, $response
 });
 
 /**
- * @api {PUT} /channels/:channel_id/posts Récupérer les messages d'une conversation 
+ * @api {GET} /channels/:channel_id/posts Récupérer les messages d'une conversation 
  * @apiName getMessages
  * @apiGroup Message
  *

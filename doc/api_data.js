@@ -229,7 +229,7 @@ define({ "api": [
             "type": "Object",
             "optional": false,
             "field": "channel",
-            "description": "<p>La conversation créé</p>"
+            "description": "<p>La conversation créée</p>"
           }
         ]
       }
@@ -549,7 +549,7 @@ define({ "api": [
     "groupTitle": "Message"
   },
   {
-    "type": "PUT",
+    "type": "GET",
     "url": "/channels/:channel_id/posts",
     "title": "Récupérer les messages d'une conversation",
     "name": "getMessages",

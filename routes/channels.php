@@ -45,7 +45,7 @@ $app->GET('/api/channels', function ($request, $response, $args) {
  * @apiParam {String} topic Sujet de la conversation
  * @apiParam {String} token Le token de session
  *
- * @apiSuccess {Object} channel La conversation créé
+ * @apiSuccess {Object} channel La conversation créée
  */
 
 $app->post('/api/channels', function ($request, $response, $args) {
