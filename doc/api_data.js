@@ -550,7 +550,7 @@ define({ "api": [
   },
   {
     "type": "PUT",
-    "url": "/channels/:channel_id/posts/:id",
+    "url": "/channels/:channel_id/posts",
     "title": "Récupérer les messages d'une conversation",
     "name": "getMessages",
     "group": "Message",
