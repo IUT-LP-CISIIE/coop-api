@@ -501,6 +501,13 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
+            "field": "message",
+            "description": "<p>Le contenu du message</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
             "field": "token",
             "description": "<p>Le token de session</p>"
           }

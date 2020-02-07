@@ -27,6 +27,7 @@ $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $respo
  *
  * @apiParam {String} channel_id Identifiant de la conversation
  * @apiParam {String} id Identifiant du message
+ * @apiParam {String} message Le contenu du message
  * @apiParam {String} token Le token de session
  */
 $function_update_post = function ($request, $response, $args) {
