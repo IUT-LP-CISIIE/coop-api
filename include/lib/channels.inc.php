@@ -20,7 +20,7 @@ function channel_create($channel) {
 
 
 function channel_getAll() {
-	$sth = prepare("SELECT * FROM channels WHERE cle = :cle ORDER BY MAX(created_at,modified_at) ASC");
+	$sth = prepare("SELECT * FROM channels WHERE cle = :cle ORDER BY modified_at ASC");
 	$sth->bindParam("cle", $GLOBALS['API_KEY']);
 
 	$sth->execute();
