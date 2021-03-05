@@ -12,12 +12,12 @@ if($_SERVER['HTTP_HOST'] == 'tools.sopress.net') {
 	define('URL_API','http://tools.sopress.net/iut/coop/');	
 } else {
 	$settings = array();
-	$settings['host'] = 'sopress.local';
+	$settings['host'] = 'localhost';
 	$settings['dbname'] = 'coop';
-	$settings['user'] = 'sopress';
-	$settings['pass'] = 'sopress';
+	$settings['user'] = 'root';
+	$settings['pass'] = 'root';
 
-	define('CHEMIN_SITE','/home/sopress/dev/iut/coop-api/');
-	define('URL_API','http://sopress.local/iut/coop-api/');
+	define('CHEMIN_SITE',realpath(dirname(__FILE__).'/..').'/');
+	define('URL_API','http://dev.local/iut/coop-api/');
 }
 
