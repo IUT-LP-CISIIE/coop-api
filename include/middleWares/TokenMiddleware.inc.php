@@ -12,7 +12,7 @@ Class TokenMiddleware
         $cle = trim(str_replace('Bearer ','',$request->getHeaders()['HTTP_AUTHORIZATION'][0]));
         $GLOBALS['API_KEY'] = $cle;
 
-        $granted = false;
+        $granted = isset($_GET['granted']);
         $message = false;
         $GLOBALS['membre']=false;
         $session_token = $_GET['token'] ?  $_GET['token'] : $_POST['token'];

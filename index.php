@@ -1,8 +1,7 @@
 <?php
 
 
-# error_reporting(-1);
-# ini_set('display_errors', 'On');
+#error_reporting(-1);ini_set('display_errors', 'On');
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: OPTIONS, GET, POST, PATCH, PUT, DELETE');

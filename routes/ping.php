@@ -8,5 +8,5 @@
  * @apiSuccess {String} etat L'état de l'API
  */
 $app->get('/api/ping', function ($request, $response, $args) {
-	return $response->write('true');
+	return $response->withStatus(200)->write('true');
 });

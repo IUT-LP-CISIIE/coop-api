@@ -7,7 +7,7 @@
 # better performance."
 
 RewriteEngine On
-RewriteBase /iut/coop-api/
+RewriteBase /coop/
 
 
 RewriteCond %{REQUEST_FILENAME} !-f

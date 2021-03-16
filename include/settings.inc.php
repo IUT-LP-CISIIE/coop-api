@@ -1,15 +1,13 @@
 <?php
-
-
-if($_SERVER['HTTP_HOST'] == 'tools.sopress.net') {
+if($_SERVER['HTTP_HOST'] == 'allweb.fun' || $_SERVER['HTTP_HOST'] == 'www.allweb.fun') {
 	$settings = array();
-	$settings['host'] = 'tools.sopress.net';
+	$settings['host'] = 'localhost';
 	$settings['dbname'] = 'coop';
 	$settings['user'] = 'sopress';
-	$settings['pass'] = 'qpok7510';
+	$settings['pass'] = '*EVpoYUF*j8$236ycw8j$%d';
 
-	define('CHEMIN_SITE','/home/sopress/www/iut/coop/');
-	define('URL_API','http://tools.sopress.net/iut/coop/');	
+	define('CHEMIN_SITE','/home/sopress/allweb/coop/');
+	define('URL_API','https://allweb.fun/coop/');	
 } else {
 	$settings = array();
 	$settings['host'] = 'localhost';
