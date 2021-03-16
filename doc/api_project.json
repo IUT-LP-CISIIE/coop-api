@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "API du TD Co'op. <a href=\"../key.php\">Obtenez votre token d'autorisation ici</a>",
   "title": "Co'op - Un clone de Slack",
-  "url": "https://tools.sopress.net/iut/coop/api",
+  "url": "https://allweb.fun/coop/api/",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2020-02-07T07:17:19.790Z",
+    "time": "2021-03-16T21:07:49.711Z",
     "url": "http://apidocjs.com",
-    "version": "0.18.0"
+    "version": "0.20.0"
   }
 }
