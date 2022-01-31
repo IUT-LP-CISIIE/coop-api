@@ -40,10 +40,15 @@ function post_create($post) {
 }	
 
 function post_delete($hash) {
-	$sql = "DELETE FROM posts WHERE hash = :hash";
-	$sth = prepare($sql);
-	$sth->bindParam("hash", $hash);
-	return $sth->execute();
+	if(post_get($hash, 'hash')) {
+		$sql = "DELETE FROM posts WHERE hash = '".$hash."'";
+		$sth = prepare($sql);
+		$sth->bindParam("hash", $hash);
+		$sth->execute();
+		if(!post_get($hash, 'hash')) {
+			return true;
+		}
+	}
 }	
 
 
