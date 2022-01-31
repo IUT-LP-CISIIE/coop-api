@@ -12,11 +12,17 @@
  */
 $app->DELETE('/api/channels/{channel_id}/posts/{id}', function ($request, $response, $args) {
 	$id = $args['id'];
-	post_delete($id);
-	$error = array('message'=>'Post effacé.');
-	return $response->withStatus(200)
-	->withHeader('Content-Type', 'application/json')
-	->write(json_encode($error));
+	if(post_delete($id)) {
+		$json= array('message'=>'Post effacé.');
+			return $response->withStatus(200)
+		->withHeader('Content-Type', 'application/json')
+		->write(json_encode($json));
+	} else {
+		$error = array('message'=>'Impossible de supprimer ce message.');
+		return $response->withStatus(500)
+		->withHeader('Content-Type', 'application/json')
+		->write(json_encode($error));
+	}
 });
 
 
